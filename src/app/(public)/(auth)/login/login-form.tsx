@@ -33,14 +33,13 @@ export default function LoginForm() {
     if (loginMutation.isPending) return;
 
     try {
-      const response = await loginMutation.mutateAsync(data); 
+      const response = await loginMutation.mutateAsync(data);
 
       if (response.status === HttpStatusCode.Ok) {
         toast({
           description: response.payload.message,
         });
       }
-
     } catch (error) {
       handleErrorApi({
         error,
