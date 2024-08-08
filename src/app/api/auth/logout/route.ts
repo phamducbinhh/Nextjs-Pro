@@ -8,10 +8,11 @@ export async function POST(request: Request) {
 
   const refreshToken = cookieStore.get("refreshToken")?.value;
 
-  if (!accessToken || !refreshToken) {
-    cookieStore.delete("accessToken");
+  cookieStore.delete("accessToken");
 
-    cookieStore.delete("refreshToken");
+  cookieStore.delete("refreshToken");
+
+  if (!accessToken || !refreshToken) {
 
     return Response.json(
       {
