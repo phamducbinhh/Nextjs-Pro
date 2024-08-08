@@ -18,7 +18,7 @@ class AuthApiRequest {
     return http.post(
       "/auth/logout",
       {
-        refreshToken: body.accessToken,
+        refreshToken: body.refreshToken,
       },
       {
         headers: {
