@@ -1,6 +1,7 @@
 import accountApiRequest from "@/apiRequests/account";
 import { HttpStatusCode } from "@/constants/httpStatusCode.enum";
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { UpdateMeBodyType } from "@/schemaValidations/account.schema";
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 export const useAccountQuery = (
   { enabled }: { enabled: boolean },
@@ -16,5 +17,16 @@ export const useAccountQuery = (
       }
     },
     enabled,
+  });
+};
+
+
+
+export const useUpdateMeMutation = (
+  options?: UseMutationOptions<any, unknown, UpdateMeBodyType, unknown>
+) => {
+  return useMutation({
+    ...options,
+    mutationFn: (body: Omit<UpdateMeBodyType, "me-update">) => accountApiRequest.updateMe(body),
   });
 };
